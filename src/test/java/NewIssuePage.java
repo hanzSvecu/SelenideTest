@@ -1,8 +1,9 @@
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Selectors.byClassName;
+import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -14,27 +15,29 @@ public class NewIssuePage {
     private String summaryXpath = "/html/body/div[1]/div/div/div/yt-analytics-zone/div/yt-issue-layout/div/div[1]/div/yt-issue-layout-body/yt-dropzone/div/ng-transclude/textarea[1]";
     private String issueListClass = "ring-menu__item__i";
 
-    // mandatory
+    private SelenideElement createButton = $(byXpath(createButtonXpath));
+    private SelenideElement summaryInput = $(byXpath(summaryXpath));
+
+    //TODO: generalize to page class
+    private ElementsCollection headerOptions = $$(byClassName(issueListClass));
+
+    // mandatory to create issue in app
     public void insertSummary(String summary) {
-        $(By.xpath(summaryXpath)).val(summary);
+        summaryInput.val(summary);
     }
 
     public void createIssue() {
-//        $(By.className(createButtonClass)).click();
-        $(By.xpath(createButtonXpath)).shouldBe(Condition.visible).click();
+        createButton.shouldBe(Condition.visible).click();
     }
 
     //TODO: generalize to page class
     public void goToIssues(){
-        ElementsCollection elements = $$(By.className(issueListClass));
-        for (SelenideElement element: elements){
-            if (element.getText().contains("Issues")) {
-              element.shouldBe(Condition.visible).click();
+        for (SelenideElement option: headerOptions){
+            if (option.getText().contains("Issues")) {
+                option.shouldBe(Condition.visible).click();
             }
             break;
         }
     }
-
-
 
 }

@@ -6,15 +6,16 @@ public class CreateNewIssueTest {
 
     // to assure that each test uses unique issue name
     private final String issueName = "SampleSummary"+System.currentTimeMillis();
+    private final String homepage = "https://qa-test-fad-1.myjetbrains.com/youtrack";
 
-    LoginPage loginPage = new LoginPage();
-    MyDashboardPage myDashboardPage = new MyDashboardPage();
-    NewIssuePage newIssuePage = new NewIssuePage();
-    IssuesPage issuesPage = new IssuesPage();
+    private LoginPage loginPage = new LoginPage();
+    private MyDashboardPage myDashboardPage = new MyDashboardPage();
+    private NewIssuePage newIssuePage = new NewIssuePage();
+    private IssuesPage issuesPage = new IssuesPage();
 
     @Test
     public void loginAndReportIssue() {
-        open("https://qa-test-fad-1.myjetbrains.com/youtrack");
+        open(homepage);
         loginPage.loginCorrect();
         myDashboardPage.createNewIssue();
         newIssuePage.insertSummary(issueName);

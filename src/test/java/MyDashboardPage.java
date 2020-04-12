@@ -1,10 +1,11 @@
-import org.openqa.selenium.By;
+import com.codeborne.selenide.SelenideElement;
 
+import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 
 public class MyDashboardPage {
 
-    private String createNewIssueXpath = "//*[@id=\"headerContainer\"]/div/div[1]/div/div/div/div/div/button";
+    private SelenideElement createNewIssue = $(byXpath("//*[@id=\"headerContainer\"]/div/div[1]/div/div/div/div/div/button"));
 
     // TODO: add proper check
     public boolean checkThatNewIssueIsPresent(String issueName){
@@ -12,7 +13,7 @@ public class MyDashboardPage {
     }
 
     public void createNewIssue() {
-        $(By.xpath(createNewIssueXpath)).click();
+        createNewIssue.click();
     }
 
 }
