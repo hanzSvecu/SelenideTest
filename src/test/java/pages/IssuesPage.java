@@ -1,17 +1,24 @@
 package pages;
 
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.*;
 import org.junit.Assert;
 
 import static com.codeborne.selenide.Selectors.byCssSelector;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class IssuesPage {
+public class IssuesPage extends TemplatePage {
 
     private ElementsCollection allItemsInIssue = $$(byCssSelector("yt-issue-summary[class='yt-issue-summary']"));
+
+    private SelenideElement issuesSidebar = $(byCssSelector("div[data-test='issuesSidebar']"));
+    private SelenideElement issuesQuery = $(byCssSelector("div[data-test='ring-query-assist']"));
+
+    @Override
+    public void isOpen(){
+        issuesSidebar.shouldBe(Condition.visible);
+        issuesQuery.shouldBe(Condition.visible);
+    }
 
     public void isNewIssueListed(String issueName) {
         Selenide.refresh();
