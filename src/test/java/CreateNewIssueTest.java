@@ -12,15 +12,17 @@ public class CreateNewIssueTest {
     private MyDashboardPage myDashboardPage = new MyDashboardPage();
     private NewIssuePage newIssuePage = new NewIssuePage();
     private IssuesPage issuesPage = new IssuesPage();
+    private HeaderMenu headerMenu = new HeaderMenu();
 
     @Test
     public void loginAndReportIssue() {
         open(homepage);
         loginPage.loginCorrect();
-        myDashboardPage.createNewIssue();
+        myDashboardPage.isOpen();
+        headerMenu.createNewIssue();
         newIssuePage.insertSummary(issueName);
         newIssuePage.createIssue();
-        newIssuePage.goToIssues();
+        headerMenu.goToIssues();
         issuesPage.isNewIssueListed(issueName);
     }
 
