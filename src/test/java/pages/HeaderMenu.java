@@ -1,10 +1,12 @@
+package pages;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selectors.byCssSelector;
 import static com.codeborne.selenide.Selenide.$;
 
-class HeaderMenu {
+public class HeaderMenu {
 
     private SelenideElement issuesButton = $(byCssSelector("a[ng-href='issues']"));
     private SelenideElement dashboardsButton = $(byCssSelector("a[data-test-id='Dashboard']"));
@@ -13,11 +15,11 @@ class HeaderMenu {
     private SelenideElement projectsButton = $(byCssSelector("a[data-test-id='Projects']"));
     private SelenideElement newIssueButton = $(byCssSelector("button[data-test='createIssueButton']"));
 
-    void goToIssues(){
+    public void goToIssues(){
         issuesButton.shouldBe(Condition.visible).click();
     }
 
-    void createNewIssue() {
+    public void createNewIssue() {
         newIssueButton.shouldBe(Condition.visible).click();
     }
 

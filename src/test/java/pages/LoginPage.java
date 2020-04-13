@@ -1,9 +1,11 @@
+package pages;
+
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.$;
 
-class LoginPage {
+public class LoginPage {
 
     private SelenideElement usernameInput = $(byId("username"));
     private SelenideElement passwordInput = $(byId("password"));
@@ -12,7 +14,7 @@ class LoginPage {
     private String loginNameCorrect = "root";
     private String passwordCorrect = "toorP@ssw0rd";
 
-    void loginCorrect() {
+    public void loginCorrect() {
         login(loginNameCorrect, passwordCorrect);
     }
 

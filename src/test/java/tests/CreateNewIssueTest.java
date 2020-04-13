@@ -1,4 +1,7 @@
+package tests;
+
 import org.junit.Test;
+import pages.*;
 
 import static com.codeborne.selenide.Selenide.open;
 
